@@ -91,7 +91,7 @@ def animar(tela, camada_de_atores, fase, passo=0.01, delta_t=0.04):
         elif evento.keysym == 'Down':
             angulo -= 1
             if angulo < 0:
-                angulo = 359
+                angulo = 360
         elif evento.keysym == 'Return' or evento.keysym == 'space':
             fase.lancar(angulo, tempo)
 
