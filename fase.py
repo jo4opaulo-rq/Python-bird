@@ -46,6 +46,7 @@ class Fase():
         self._obstaculos.extend(obstaculos)
 
 
+
     def adicionar_porco(self, *porcos):
         """
         Adiciona porcos em uma fase
