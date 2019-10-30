@@ -76,14 +76,16 @@ class Fase():
 
         :return:
         """
-        if self.possui_passaro_e_porco_ativos():
-            return EM_ANDAMENTO
 
-        if self.possui_porco_ativo():
-            return DERROTA
+        return EM_ANDAMENTO
 
-        if self.nao_possui_porco_ativo():
-            return VITORIA
+
+        return DERROTA
+
+
+
+        return VITORIA
+
 
 
     def lancar(self, angulo, tempo):
@@ -98,7 +100,10 @@ class Fase():
         :param tempo: Tempo de lançamento
         """
 
-        pass
+        for passaro in self._passaros:
+            if not passaro.foi_lancado():
+                passaro.lancar(angulo, tempo)
+                break
 
 
     def calcular_pontos(self, tempo):
@@ -110,6 +115,8 @@ class Fase():
         :param tempo: tempo para o qual devem ser calculados os pontos
         :return: objeto do tipo Ponto
         """
+        for
+            colidir()
         pontos=[self._transformar_em_ponto(a) for a in self._passaros+self._obstaculos+self._porcos]
 
         return pontos
