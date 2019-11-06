@@ -76,15 +76,29 @@ class Fase():
 
         :return:
         """
+        if self._possui_passaro_e_porco_ativos():
+            return EM_ANDAMENTO
 
-        return EM_ANDAMENTO
+        if self._possui_porco_ativo():
+            return DERROTA
+        
+        else:
+            return VITORIA
 
+    def _possui_passaro_e_porco_ativos(self):
+        tem_passaros= self._possui_passaro_ativo()
+        tem_porco= self._possui_porco_ativo()
 
-        return DERROTA
+    def _possui_porco_ativo(self):
+        for porco in self._porcos:
+            if porco.status == ATIVO:
+                return  True
 
-
-
-        return VITORIA
+    def _possui_passaro_ativo(self):
+        for passaro in self._passaros:
+            if passaro.status== ATIVO:
+                return  True
+        return Fase
 
 
 
