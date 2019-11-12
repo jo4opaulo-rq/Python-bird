@@ -89,6 +89,7 @@ class Fase():
         tem_passaros= self._possui_passaro_ativo()
         tem_porco= self._possui_porco_ativo()
         return tem_passaros and tem_porco
+
     def _possui_porco_ativo(self):
         for porco in self._porcos:
             if porco.status == ATIVO:
