@@ -207,6 +207,7 @@ class PassaroVermelhoTests(PassaroBaseTests):
         self.assertEqual(20, PassaroVermelho.velocidade_escalar)
 
 
+
     def teste_foi_lancado(self):
         """
         Teste de lançamento. Enquanto o método lançar do passaro não for chamado, o méotodo foi_lancado deve retornar
@@ -219,6 +220,7 @@ class PassaroVermelhoTests(PassaroBaseTests):
         passaro_vermelho.lancar(0, 0)
         self.assertTrue(passaro_vermelho.foi_lancado(),
                         'Se o método lançar foi executado, deve retornar verdadeiro')
+
 
     def teste_colisao_com_chao(self):
         """
@@ -242,6 +244,8 @@ class PassaroVermelhoTests(PassaroBaseTests):
         self.assertEqual(DESTRUIDO, passaro.status, 'Deve colidir com chão sempre que y<=0')
 
 
+
+
 class PassaroAmareloTests(PassaroBaseTests):
     """
     Classe de Tests para passaros amarelos
@@ -252,7 +256,7 @@ class PassaroAmareloTests(PassaroBaseTests):
         self.assertEqual('A', passaro_amarelo.caracter())
         outro_ator_na_mesma_posicao = Ator()
         passaro_amarelo.colidir(outro_ator_na_mesma_posicao)
-        self.assertEqual('A', passaro_amarelo.caracter())
+        self.assertEqual('a', passaro_amarelo.caracter())
 
     def teste_velocidade_escalar(self):
         self.assertEqual(30, PassaroAmarelo.velocidade_escalar)
