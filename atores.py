@@ -38,7 +38,8 @@ class Ator():
         :param tempo: o tempo do jogo
         :return: posição x, y do ator
         """
-        return 1, 1
+        return self.x, self.y
+        #return 1, 1
 
     def colidir(self, outro_ator, intervalo=1):
         """
@@ -126,7 +127,10 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        return 1, 1
+        # Calculo (Atualização do x e Y)
+        # Fórmula Y=Y0+v*sen(teta)delta_t-(G*delta_t^2)/2.
+
+        return super().calcular_posicao().calcular_posicao(self, tempo)
 
 
     def lancar(self, angulo, tempo_de_lancamento):
