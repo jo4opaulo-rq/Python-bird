@@ -127,10 +127,24 @@ class Passaro(Ator):
         :param tempo: tempo de jogo a ser calculada a posição
         :return: posição x, y
         """
-        # Calculo (Atualização do x e Y)
-        # Fórmula Y=Y0+v*sen(teta)delta_t-(G*delta_t^2)/2.
+        if self.foi_lancado():
+            from math import sin, radians
+            #Fórmula Y=Y0+v*sen(teta)delta_t-(G*delta_t^2)/2.
+            parcela = self._y_inicial
+            angulo_em_radianos= radians(self._angulo_de_lancamento)
+            parcela = self.velocidade_escalar
+            parcela*= sin(angulo_em_radianos)
+            delta_t = tempo-self._tempo_de_lancamento
+            parcela *= delta_t
 
-        return super().calcular_posicao().calcular_posicao(self, tempo)
+            novo_y+= parcela
+
+            novo_y -= (GRAVIDADE*delta_t ** 2) / 2
+
+            self._y_inicial = novo_y
+
+            return super().calcular_posicao(tempo)
+
 
 
     def lancar(self, angulo, tempo_de_lancamento):
@@ -143,6 +157,9 @@ class Passaro(Ator):
         :return:
         """
         self._foi_lancado = True
+        self._angulo_de_lancamento = angulo
+        self._tempo_de_lancamento = tempo_de_lancamento
+
 
 
 class PassaroAmarelo(Passaro):

@@ -220,6 +220,17 @@ class PassaroVermelhoTests(PassaroBaseTests):
         passaro_vermelho.lancar(0, 0)
         self.assertTrue(passaro_vermelho.foi_lancado(),
                         'Se o método lançar foi executado, deve retornar verdadeiro')
+        self.assertEqual(0, passaro_vermelho._angulo_de_lancamento)
+        self.assertEqual(0, passaro_vermelho._tempo_de_lancamento)
+
+        passaro_amarelo = PassaroAmarelo(10, 10)
+        self.assertFalse(passaro_amarelo.foi_lancado(),
+                         'Se o método lançar ainda não foi executado, deve retornar falso')
+        passaro_amarelo.lancar(20, 5)
+        self.assertTrue(passaro_amarelo.foi_lancado(),
+                        'Se o método lançar foi executado, deve retornar verdadeiro')
+        self.assertEqual(20, passaro_amarelo._angulo_de_lancamento)
+        self.assertEqual(5, passaro_amarelo._tempo_de_lancamento)
 
 
     def teste_colisao_com_chao(self):
@@ -266,6 +277,8 @@ class PassaroAmareloTests(PassaroBaseTests):
         Tests de lançamento vertical. Nele, o passaro só se move verticalmente e sua posição x se mantém constante
         :return:
         """
+
+
         passaro_amarelo = PassaroAmarelo(1, 1)
         passaro_amarelo.lancar(90, 2)  # passaro lancado a 90 graus no tempo 2 segundos
 
