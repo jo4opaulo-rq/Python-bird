@@ -111,7 +111,8 @@ class Passaro(Ator):
         o status dos Passaro deve ser alterado para destruido, bem como o seu caracter
 
         """
-        pass
+        if self.y <=0:
+            self.status= DESTRUIDO
 
     def calcular_posicao(self, tempo):
         """
@@ -137,7 +138,7 @@ class Passaro(Ator):
             delta_t = tempo-self._tempo_de_lancamento
             parcela *= delta_t
 
-            novo_y += parcela
+            novo_y = parcela
 
             novo_y -= (GRAVIDADE*delta_t ** 2) / 2
 
