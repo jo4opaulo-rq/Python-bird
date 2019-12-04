@@ -137,11 +137,11 @@ class Passaro(Ator):
             delta_t = tempo-self._tempo_de_lancamento
             parcela *= delta_t
 
-            novo_y+= parcela
+            novo_y += parcela
 
             novo_y -= (GRAVIDADE*delta_t ** 2) / 2
 
-            self._y_inicial = novo_y
+            self.y = novo_y
 
             return super().calcular_posicao(tempo)
 
