@@ -39,7 +39,7 @@ class Ator():
         :return: posição x, y do ator
         """
         return self.x, self.y
-        return 1, 1
+        
 
     def colidir(self, outro_ator, intervalo=1):
         """
