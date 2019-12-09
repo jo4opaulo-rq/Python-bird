@@ -223,7 +223,7 @@ class PassaroVermelhoTests(PassaroBaseTests):
         self.assertEqual(0, passaro_vermelho._angulo_de_lancamento)
         self.assertEqual(0, passaro_vermelho._tempo_de_lancamento)
 
-        passaro_amarelo = PassaroAmarelo(10, 10)
+        passaro_amarelo = PassaroAmarelo(1, 1)
         self.assertFalse(passaro_amarelo.foi_lancado(),
                          'Se o método lançar ainda não foi executado, deve retornar falso')
         passaro_amarelo.lancar(20, 5)
