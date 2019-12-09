@@ -39,7 +39,7 @@ class Ator():
         :return: posição x, y do ator
         """
         return self.x, self.y
-        #return 1, 1
+        return 1, 1
 
     def colidir(self, outro_ator, intervalo=1):
         """
@@ -129,24 +129,23 @@ class Passaro(Ator):
         :return: posição x, y
         """
         if self.foi_lancado():
-            from math import sin, radians
-            #Fórmula Y=Y0+v*sen(teta)delta_t-(G*delta_t^2)/2.
-            parcela = self._y_inicial
-            angulo_em_radianos= radians(self._angulo_de_lancamento)
-            parcela = self.velocidade_escalar
-            parcela*= sin(angulo_em_radianos)
-            delta_t = tempo-self._tempo_de_lancamento
-            parcela *= delta_t
+            self._calcular_novo_y(tempo)
+            self._calcular_novo_x(tempo)
 
-            novo_y = parcela
+        return super().calcular_posicao(tempo)
 
-            novo_y -= (GRAVIDADE*delta_t ** 2) / 2
-
-            self.y = novo_y
-
-            return super().calcular_posicao(tempo)
-
-
+    def _calcular_novo_y(self, tempo):
+        from math import sin, radians
+        # Fórmula Y=Y0+v*sen(teta)delta_t-(G*delta_t^2)/2.
+        parcela = self._y_inicial
+        angulo_em_radianos = radians(self._angulo_de_lancamento)
+        parcela = self.velocidade_escalar
+        parcela *= sin(angulo_em_radianos)
+        delta_t = tempo - self._tempo_de_lancamento
+        parcela *= delta_t
+        novo_y = parcela
+        novo_y -= (GRAVIDADE * delta_t ** 2) / 2
+        self.y = novo_y
 
     def lancar(self, angulo, tempo_de_lancamento):
         """
@@ -161,6 +160,18 @@ class Passaro(Ator):
         self._angulo_de_lancamento = angulo
         self._tempo_de_lancamento = tempo_de_lancamento
 
+    def _calcular_novo_x(self, tempo):
+        #Fórmula X=X0+v*cos(teta)*delta_t.
+        import math
+        novo_x= self._x_inicial
+        parcela= self.velocidade_escalar
+        angulo_em_radianos= math.radians(self._angulo_de_lancamento)
+        parcela *=math.cos(angulo_em_radianos)
+        delta_t= tempo - self._tempo_de_lancamento
+        parcela *= delta_t
+        novo_x += parcela
+
+        self.x= novo_x
 
 
 class PassaroAmarelo(Passaro):
